@@ -16,7 +16,7 @@ class PatientManager {
 
   // Method to insert patient data via POST request
   insertPatient() {
-    fetch("http://your-ec2-public-ip/insert", { method: "POST" })
+    fetch("https://comp4537-lab5-c5m6.onrender.com/insert", { method: "POST" })
       .then((response) => response.json())
       .then((data) => this.displayResult(data))
       .catch((error) => this.displayError(error));
@@ -28,7 +28,9 @@ class PatientManager {
 
     if (query.toUpperCase().startsWith("SELECT")) {
       fetch(
-        `http://your-ec2-public-ip/query?sql=${encodeURIComponent(query)}`,
+        `https://comp4537-lab5-c5m6.onrender.com/query?sql=${encodeURIComponent(
+          query
+        )}`,
         {
           method: "GET",
         }
