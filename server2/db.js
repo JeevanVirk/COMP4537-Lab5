@@ -3,6 +3,7 @@ const { Pool } = require("pg");
 // Database connection configuration
 class Database {
   constructor() {
+    console.log(process.env.POSTGRES_URL)
     this.pool = new Pool({
       connectionString: process.env.POSTGRES_URL, // Use your environment variable
     });
