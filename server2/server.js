@@ -54,7 +54,7 @@ function executeSelectQuery(sql, res) {
     if (err) {
       sendResponse(res, 500, { error: "Database query error" });
     } else {
-      sendResponse(res, 200, results);
+      sendResponse(res, 200, results.rows);
     }
   });
 }
