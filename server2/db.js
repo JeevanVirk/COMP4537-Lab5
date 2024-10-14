@@ -5,7 +5,8 @@ class Database {
   constructor() {
     console.log(process.env.POSTGRES_URL)
     this.pool = new Pool({
-      connectionString: process.env.POSTGRES_URL, // Use your environment variable
+      connectionString:
+        "postgres://default:va2sQXOhUyE3@ep-soft-poetry-a4fihvg0-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require", // Use your environment variable
     });
 
     this.createTableIfNotExists();
