@@ -1,6 +1,7 @@
 const http = require("http");
 const url = require("url");
 const db = require("./db");
+require("dotenv").config();
 
 const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url, true);
