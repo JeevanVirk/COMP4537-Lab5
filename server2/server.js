@@ -32,70 +32,11 @@ const server = http.createServer((req, res) => {
   }
 });
 
-// // Function to insert a new patient (dummy data)
-// function insertPatient(res) {
-//   const insertQuery =
-
-//     "INSERT INTO patient (name, age, address) VALUES ('John Doe', 30, '123 Street Name')";
-//   db.executeQuery(insertQuery, (err, result) => {
-//     if (err) {
-//       sendResponse(res, 500, { error: "Database insert error" });
-//     } else {
-//       sendResponse(res, 200, {
-//         message: "Patient inserted successfully",
-//         result,
-//       });
-//     }
-//   });
-// }
-
 // Function to insert a new patient (dummy data)
 function insertPatient(res) {
-  // SQL query to check if the table exists
-  const checkTableQuery = `
-    SELECT to_regclass('public.patient');
-  `;
+  const insertQuery =
 
-  // Execute the query to check for the table
-  db.executeQuery(checkTableQuery, (err, result) => {
-    if (err) {
-      return sendResponse(res, 500, { error: "Database error while checking table existence" });
-    }
-
-    // Check if the table exists (result should not be null)
-    if (!result[0].to_regclass) {
-      // Table does not exist, create it
-      const createTableQuery = `
-        CREATE TABLE patient (
-          id SERIAL PRIMARY KEY,
-          name VARCHAR(255),
-          age INT,
-          address VARCHAR(255)
-        );
-      `;
-
-      // Execute the create table query
-      db.executeQuery(createTableQuery, (createErr) => {
-        if (createErr) {
-          return sendResponse(res, 500, { error: "Database error while creating table" });
-        }
-
-        // Now that the table is created, insert the new patient
-        insertNewPatient(res);
-      });
-    } else {
-      // Table exists, insert the new patient
-      insertNewPatient(res);
-    }
-  });
-}
-
-// Helper function to insert a new patient
-function insertNewPatient(res) {
-  const insertQuery = `
-    INSERT INTO patient (name, age, address) VALUES ('John Doe', 30, '123 Street Name');
-  `;
-
+    "INSERT INTO patient (name, age, address) VALUES ('John Doe', 30, '123 Street Name')";
   db.executeQuery(insertQuery, (err, result) => {
     if (err) {
       sendResponse(res, 500, { error: "Database insert error" });
@@ -107,6 +48,8 @@ function insertNewPatient(res) {
     }
   });
 }
+
+
 
 // Function to execute SELECT queries
 function executeSelectQuery(sql, res) {
